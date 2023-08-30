@@ -1,34 +1,31 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Electric.h"
+#include "GameFramework/FloatingPawnMovement.h"
 
-// Sets default values
 AElectric::AElectric()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+    PrimaryActorTick.bCanEverTick = true;
+    MovementSpeed = 500.0f;
+    CurrentMovementDirection = FVector::ForwardVector; // 초기 이동 방향 설정
 }
 
-// Called when the game starts or when spawned
 void AElectric::BeginPlay()
 {
-	Super::BeginPlay();
-	
+    Super::BeginPlay();
 }
 
-// Called every frame
 void AElectric::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
-
+    Super::Tick(DeltaTime);
+    MoveForward(1.0f);
 }
 
-// Called to bind functionality to input
-void AElectric::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AElectric::MoveForward(float Value)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+    FVector Movement = CurrentMovementDirection * Value * MovementSpeed * GetWorld()->GetDeltaSeconds();
+    AddActorLocalOffset(Movement);
 }
 
+void AElectric::SetMovementDirection(const FVector& Direction)
+{
+    CurrentMovementDirection = Direction.GetSafeNormal(); // 입력된 방향을 정규화하여 저장
+}

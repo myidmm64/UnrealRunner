@@ -9,21 +9,30 @@
 UCLASS()
 class UNREALRUNNER_API AElectric : public APawn
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	AElectric();
+    AElectric();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+public:
+    virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+    UFUNCTION(BlueprintCallable, Category = "Movement")
+        void SetMovementDirection(const FVector& Direction);
+
+protected:
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+        class UFloatingPawnMovement* MovementComponent;
+
+    UPROPERTY(EditAnywhere, Category = "Movement")
+        float MovementSpeed;
+
+    UPROPERTY(EditAnywhere, Category = "Movement")
+    FVector CurrentMovementDirection; // 현재 이동 방향
+
+    void MoveForward(float Value);
 
 };
