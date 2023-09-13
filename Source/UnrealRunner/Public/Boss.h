@@ -24,9 +24,23 @@ public:
         void MoveForward(float Value);
 
 private:
-    UPROPERTY(EditAnyWhere, Category = Movement)
+    UPROPERTY(VisibleAnywhere, Category = "Components")
         UFloatingPawnMovement* MovementComponent;
 
-    UPROPERTY(EditAnywhere, Category = "AI")
+    UPROPERTY(EditAnywhere, Category = "Movement")
         float MovementSpeed;
+
+    // 추가: Electric 생성 주기 및 타이머 변수
+    UPROPERTY(EditAnywhere, Category = "Spawn")
+        float SpawnInterval;
+
+    float TimeSinceLastElectricSpawn;
+
+    // 추가: 생성할 Electric 클래스들을 저장하는 배열
+    UPROPERTY(EditAnywhere, Category = "Spawn")
+        TArray<TSubclassOf<class AActor>> ElectricClasses;
+
+    int32 CurrentElectricIndex; // 현재 생성 중인 Electric 인덱스
+
+    void SpawnElectric();
 };
