@@ -34,6 +34,10 @@ private:
     UPROPERTY(EditAnywhere, Category = "Spawn")
         float SpawnInterval;
 
+    UPROPERTY(EditAnywhere, Category = "Boss")
+        bool isFront;
+
+
     float TimeSinceLastElectricSpawn;
 
     // 추가: 생성할 Electric 클래스들을 저장하는 배열
