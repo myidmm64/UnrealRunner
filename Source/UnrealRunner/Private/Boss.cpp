@@ -23,21 +23,27 @@ void ABoss::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    MoveForward(1.0f);
+    if (isFront)
+        MoveForward(-1.0f);
+    else
+        MoveForward(1.0f);
 
-    TimeSinceLastElectricSpawn += DeltaTime;
-    if (TimeSinceLastElectricSpawn >= SpawnInterval)
+    if (isFront)
     {
-        if (ElectricClasses.IsValidIndex(CurrentElectricIndex))
+        TimeSinceLastElectricSpawn += DeltaTime;
+        if (TimeSinceLastElectricSpawn >= SpawnInterval)
         {
-            SpawnElectric();
-            CurrentElectricIndex++;
-            if (CurrentElectricIndex >= ElectricClasses.Num())
+            if (ElectricClasses.IsValidIndex(CurrentElectricIndex))
             {
-                CurrentElectricIndex = 0;
+                SpawnElectric();
+                CurrentElectricIndex++;
+                if (CurrentElectricIndex >= ElectricClasses.Num())
+                {
+                    CurrentElectricIndex = 0;
+                }
             }
+            TimeSinceLastElectricSpawn = 0.0f;
         }
-        TimeSinceLastElectricSpawn = 0.0f;
     }
 }
 
