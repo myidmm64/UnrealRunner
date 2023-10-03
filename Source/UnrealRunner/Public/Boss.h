@@ -30,10 +30,6 @@ private:
     UPROPERTY(EditAnywhere, Category = "Movement")
         float MovementSpeed;
 
-    // 추가: Electric 생성 주기 및 타이머 변수
-    UPROPERTY(EditAnywhere, Category = "Spawn")
-        float SpawnInterval;
-
     UPROPERTY(EditAnywhere, Category = "Boss")
         bool isFront;
 
@@ -43,6 +39,9 @@ private:
     // 추가: 생성할 Electric 클래스들을 저장하는 배열
     UPROPERTY(EditAnywhere, Category = "Spawn")
         TArray<TSubclassOf<class AActor>> ElectricClasses;
+
+    UPROPERTY(EditAnywhere, Category = "Spawn")
+        TArray<float> electricTimes;
 
     int32 CurrentElectricIndex; // 현재 생성 중인 Electric 인덱스
 

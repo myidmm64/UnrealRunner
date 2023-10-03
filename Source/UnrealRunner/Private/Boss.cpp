@@ -10,7 +10,6 @@ ABoss::ABoss()
     MovementComponent->UpdatedComponent = RootComponent;
 
     MovementSpeed = 1200.0f;
-    SpawnInterval = 5.0f;
     CurrentElectricIndex = 0;
 }
 
@@ -31,7 +30,7 @@ void ABoss::Tick(float DeltaTime)
     if (isFront)
     {
         TimeSinceLastElectricSpawn += DeltaTime;
-        if (TimeSinceLastElectricSpawn >= SpawnInterval)
+        if (TimeSinceLastElectricSpawn >= electricTimes[CurrentElectricIndex])
         {
             if (ElectricClasses.IsValidIndex(CurrentElectricIndex))
             {
