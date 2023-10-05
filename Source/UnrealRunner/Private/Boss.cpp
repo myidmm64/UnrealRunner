@@ -18,6 +18,7 @@ void ABoss::BeginPlay()
     Super::BeginPlay();
 }
 
+
 void ABoss::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
