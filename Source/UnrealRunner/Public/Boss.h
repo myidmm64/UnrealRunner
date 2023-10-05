@@ -23,6 +23,10 @@ public:
     UFUNCTION(BlueprintCallable, Category = "AI")
         void MoveForward(float Value);
 
+public:
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HP")
+        float Hp;
+
 private:
     UPROPERTY(VisibleAnywhere, Category = "Components")
         UFloatingPawnMovement* MovementComponent;
@@ -35,6 +39,7 @@ private:
 
 
     float TimeSinceLastElectricSpawn;
+
 
     // 추가: 생성할 Electric 클래스들을 저장하는 배열
     UPROPERTY(EditAnywhere, Category = "Spawn")
